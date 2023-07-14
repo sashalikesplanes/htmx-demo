@@ -1,8 +1,21 @@
 import { Controller, Get, Param, Post, Put, Render, Req } from '@nestjs/common';
+import { faker } from '@faker-js/faker'
 
-const transfers = [
-  { id: 1, reference: "reference", code: "code", firstname: "sasha", lastname: "kiselev", location: "Julianalaan, Delft" },
-]
+let id = 0
+function createEntry(id) {
+  return {
+    id,
+    reference: `APPJ${faker.number.int({ min: 0, max: 1000 })}`,
+    code: `${faker.number.int({ min: 10000, max: 20000 })}`,
+    firstname: faker.person.firstName(),
+    lastname: faker.person.lastName(),
+    location: faker.location.streetAddress()
+  }
+}
+const transfers = [];
+for (let i = 0; i < 20; i++) {
+  transfers.push(createEntry(id++))
+}
 
 @Controller('transfers')
 export class TransfersController {
