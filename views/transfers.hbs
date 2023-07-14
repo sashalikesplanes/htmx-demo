@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>App</title>
+    <script src="/htmx.min.js"></script>
+  </head>
+  <body hx-boost="true">
+    <p>Appjection Reference | Code | Last Name</p>
+    <p>Search by code: <input hx-get="/transfers" hx-trigger="keyup changed delay:500ms" hx-target="body" type="text" name="searchCode" value={{searchCode}}></p>
+    <div id="transfers">
+      {{#each transfers}}
+      <a href={{concat '/transfers/' id}}><p>{{reference}} | {{code}} | {{lastname}}</p></a>
+      {{/each}}
+    </div>
+  </body>
+</html>
