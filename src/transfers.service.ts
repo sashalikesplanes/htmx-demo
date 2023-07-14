@@ -27,12 +27,9 @@ export class TransfersService {
     return this.transfers.find((transfer) => transfer.id === id);
   }
 
-  update(id: number, transfer: Partial<Transfer>): Transfer {
+  update(id: number, transfer: Partial<Transfer>) {
     const index = this.transfers.findIndex((transfer) => transfer.id === id);
-    console.log(transfer)
     this.transfers[index] = { ...this.transfers[index], ...transfer };
-    console.log(this.transfers[index])
-    return { ...this.transfers[index] };
   }
 
   private createRandom() {

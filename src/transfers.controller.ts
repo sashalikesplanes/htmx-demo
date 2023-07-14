@@ -7,7 +7,6 @@ export class TransfersController {
   @Get()
   @Render('transfers')
   transfers(@Req() req: Request) {
-    console.log('requersrt')
     // @ts-ignore
     const searchCode = req.query.searchCode ?? '';
     return { transfers: this.transfersService.list(searchCode), searchCode }
@@ -23,6 +22,7 @@ export class TransfersController {
   @Render('transfer')
   updateTransfer(@Param('id') id: string, @Req() req: Request) {
     // @ts-ignore
-    return this.transfersService.update(+id, req.body);
+    this.transfersService.update(+id, req.body);
+    return this.transfersService.find(+id);
   }
 }
